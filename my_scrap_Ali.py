@@ -8,7 +8,7 @@ class Scrap:
     host = 'https://aliexpress.ru/'
     fakeheaders = Headers(os='mac', headers=True).generate()
 
-    def get_html(self,params=None):# -> 'bs4.element.ResultSet'
+    def get_name_and_shop(self,params=None):
         response = requests.get(self.host + 'category/202000104/laptops.html?g=undefined&page=1&spm=a2g2w.home.104.3.29de501dYFMV', 
         headers=self.fakeheaders)
         soup = BS(response.text, features='html.parser')
@@ -22,4 +22,4 @@ class Scrap:
                 print(f'Название {item_name} Магазина нет - РЕКЛАМА')
 
 my_scrap = Scrap()
-print(my_scrap.get_html())
+print(my_scrap.get_name_and_shop())
